@@ -1,46 +1,27 @@
 <?php
 
+namespace Animal;
+
 require_once('consts.php');
 
 class Animal {
+
+    protected $id;
+    protected $type;
+    protected $min_profit;
+    protected $max_profit;
+    protected $profit_type;
     
-    private $type;
-    private $profit;
-    
-    public function __construct(int $type) {
-        
-        $this->type = $type;
-        $this->type = 0;
-        
-        switch ($type) {
-            
-            case COW: {
-                
-                $this->profit = rand($animal_params[$type]['min_profit'],$animal_params[$type]['max_profit']);
-                
-                break;
-            }
-            
-            case chicken: {
-                
-                $this->profit = rand($animal_params[$type]['min_profit'],$animal_params[$type]['max_profit']);
-                
-                break;
-            }
-            
-            default : { echo __FUNCTION__.":unknown animal type [$type] (this should  never happen, always check animal type before object creation) <br>"; }
-            
-        }
-        
-        echo __FUNCTION__.":animal type [$type] with profit [$profit] was succesfully created <br>";
+    public function __construct() {
         
     }
-    
-    public function gather_profit() { 
+
+    public function gather_profit() {
         
-        return $this->profit;
+        $gathered = rand($this->min_profit, $this->max_profit);
+        echo get_class().':'.__FUNCTION__.":animal [$this->id] has produced [$gathered] of [$this->profit_type] <br>";
+        return $gathered;
         
     }
-    
-    
+
 }
